@@ -1,11 +1,11 @@
 import React from 'react'
 import Header from './components/Header';
-import ContactList from './containers/ContactList';
+import CustomersList from './containers/CustomersList';
 import FooterActions from './containers/FooterActions';
 import PropTypes from 'prop-types'
 import './index.css';
 
-const clientsData = [
+const customerData = [
   {
     id: "30000001",
     dni: "30000001",
@@ -124,7 +124,7 @@ const ContactPage = ({headerTitle, contactsData, footer}) => {
   return (
     <div className="containerHome">
       <Header title={headerTitle || "Clientes"} />
-      <ContactList contactsData={clientsData} />
+      <CustomersList customerData={customerData} />
       <FooterActions footer={footer} />
     </div>
   );

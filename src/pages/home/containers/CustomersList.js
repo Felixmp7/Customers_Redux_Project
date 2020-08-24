@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './ContactList.css'
-import Client from '../components/Client';
+import Customer from '../components/Customer';
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ContactList = ({ contactsData }) => {
+const Customer = ({ customerData }) => {
   const [view, setView] = useState('list');
 
   const handleView = (param) => setView(param)
@@ -32,7 +32,7 @@ const ContactList = ({ contactsData }) => {
   const gridIcon = view === "grid" ? "#799ED0" : "#aaa";
 
   return (
-    <div className="contactListContainer">
+    <div className="CustomersContainer">
       <Paper className={classes.headerPaper}>
         <Button onClick={() => handleView("list")}>
           <Icon path={mdiViewList} size={1} color={listIcon} />
@@ -42,13 +42,13 @@ const ContactList = ({ contactsData }) => {
         </Button>
       </Paper>
       <div className="listContainer">
-        {contactsData.map((client, index) => {
+        {customerData.map((customer, index) => {
           return (
-            <Client
+            <Customer
               key={index}
-              dni={client.dni}
-              urlPath={"client"}
-              clientName={client.name}
+              dni={customer.dni}
+              urlPath={"customer"}
+              clientName={customer.name}
             />
           );
         })}
@@ -57,8 +57,8 @@ const ContactList = ({ contactsData }) => {
   );
 };
 
-ContactList.propTypes = {
-  contactsData: PropTypes.array,
+Customer.propTypes = {
+  customerData: PropTypes.array,
 };
 
-export default ContactList
+export default Customer
