@@ -1,21 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
+import './index.css'
 
 const EditContact = ({ clientName, dni, age }) => {
   return (
     <div className="containerEditContact">
-      <h2>Edición del Cliente</h2>
-      <div>
-        <strong>Nombre:</strong>
-        <i>{clientName}</i>
-      </div>
-      <div>
-        <strong>DNI:</strong>
-        <i>{dni}</i>
-      </div>
-      <div>
-        <strong>Age:</strong>
-        <i>{age}</i>
+      <div className="modal">
+        <h2>Edición del Cliente</h2>
+        <div>
+          <strong>Nombre:</strong>
+          <i>{clientName}</i>
+        </div>
+        <div>
+          <strong>DNI:</strong>
+          <i>{dni}</i>
+        </div>
+        <div>
+          <strong>Age:</strong>
+          <i>{age}</i>
+        </div>
       </div>
     </div>
   );
