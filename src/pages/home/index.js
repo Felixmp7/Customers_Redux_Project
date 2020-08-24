@@ -1,9 +1,11 @@
 import React from 'react'
 import Header from './components/Header';
 import CustomersList from './containers/CustomersList';
-import FooterActions from './containers/FooterActions';
+import Footer from '../../utils/footer/Footer';
 import PropTypes from 'prop-types'
+import Button from "@material-ui/core/Button";
 import './index.css';
+import { withRouter } from 'react-router-dom';
 
 const customerData = [
   {
@@ -120,19 +122,27 @@ const customerData = [
   },
 ];
 
-const ContactPage = ({headerTitle, contactsData, footer}) => {
+const CustomerPage = ({headerTitle, contactsData, footer, history}) => {
+
+  const createNewCustomer = () => {
+    history.push('/customer/new');
+  }
   return (
     <div className="containerHome">
       <Header title={headerTitle || "Clientes"} />
       <CustomersList customerData={customerData} />
-      <FooterActions footer={footer} />
+      <Footer>
+        <Button variant='outlined' onClick={createNewCustomer}>
+          New Customer
+        </Button>
+      </Footer>
     </div>
   );
 }
 
-ContactPage.propTypes = {
+CustomerPage.propTypes = {
   headerTitle: PropTypes.string.isRequired,
   footer: PropTypes.string,
 }
 
-export default ContactPage;
+export default withRouter(CustomerPage);
