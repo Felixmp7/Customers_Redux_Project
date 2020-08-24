@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import './index.css'
 
-const EditContact = ({ clientName, dni, age }) => {
+const EditCustomer = ({ customerName, dni, age }) => {
   return (
-    <div className="containerEditContact">
+    <div className="containerEditCustomer">
       <div className="modal">
         <h2>Edición del Cliente</h2>
         <div>
           <strong>Nombre:</strong>
-          <i>{clientName}</i>
+          <i>{customerName}</i>
         </div>
         <div>
           <strong>DNI:</strong>
@@ -24,10 +24,10 @@ const EditContact = ({ clientName, dni, age }) => {
   );
 };
 
-EditContact.propTypes = {
-  clientName: PropTypes.string.isRequired,
+EditCustomer.propTypes = {
+  customerName: PropTypes.string.isRequired,
   dni: PropTypes.string.isRequired,
   age: PropTypes.string,
 };
 
-export default EditContact;
+export default EditCustomer;

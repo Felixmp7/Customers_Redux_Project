@@ -1,16 +1,16 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Clients from "../pages/home";
-import ClientDetails from "../pages/client-detail";
-import EditClient from "../pages/edit-client";
+import Customers from "../pages/home";
+import CustomerDetails from "../pages/customer-detail";
+import EditCustomer from "../pages/edit-customer";
 
 const RouterContainer = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/client/:dni/edit" component={EditClient} />
-        <Route exact path="/client/:dni" component={ClientDetails} />
-        <Route exact path="/" component={Clients} />
+        <Route exact path="/customer/:dni/edit" component={EditCustomer} />
+        <Route exact path="/customer/:dni" component={CustomerDetails} />
+        <Route exact path="/" component={Customers} />
       </Switch>
     </Router>
   );

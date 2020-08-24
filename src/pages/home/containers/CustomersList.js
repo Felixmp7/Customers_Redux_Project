@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './ContactList.css'
+import './CustomersList.css'
 import Customer from '../components/Customer';
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Customer = ({ customerData }) => {
+const CustomerList = ({ customerData }) => {
   const [view, setView] = useState('list');
 
   const handleView = (param) => setView(param)
@@ -32,7 +32,7 @@ const Customer = ({ customerData }) => {
   const gridIcon = view === "grid" ? "#799ED0" : "#aaa";
 
   return (
-    <div className="CustomersContainer">
+    <div className="customersContainer">
       <Paper className={classes.headerPaper}>
         <Button onClick={() => handleView("list")}>
           <Icon path={mdiViewList} size={1} color={listIcon} />
@@ -57,8 +57,8 @@ const Customer = ({ customerData }) => {
   );
 };
 
-Customer.propTypes = {
+CustomerList.propTypes = {
   customerData: PropTypes.array,
 };
 
-export default Customer
+export default CustomerList
