@@ -11,3 +11,24 @@
   display: flex;
   flex-direction: column;
 }
+
+.listContainer::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.listContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.listContainer::-webkit-scrollbar-thumb {
+  margin-right: 5px;
+  border-radius: 5px;
+  background: #ccc;
+}
+
+/* Handle on hover */
+.listContainer::-webkit-scrollbar-thumb:hover {
+  background: #aaaaaa;
+}
