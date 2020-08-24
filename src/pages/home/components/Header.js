@@ -4,7 +4,10 @@ import PropTypes from 'prop-types'
 const Header = ({title}) => {
   return (
     <header>
-      <h1>{title}</h1>
+      <h1 style={{
+        color: '#f2f2f2',
+        marginBottom: 20
+      }}>{title}</h1>
     </header>
   )
 }
