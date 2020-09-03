@@ -21,7 +21,7 @@ const CustomerPage = ({
   
   useEffect(() => {
     fetchCostumers();
-  }, []);
+  }, [fetchCostumers]);
 
   const createNewCustomer = () => {
     history.push("/customer/new");
