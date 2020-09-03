@@ -1,0 +1,1 @@
+export const getCustomerDataFromStore = state => state.customerData;
