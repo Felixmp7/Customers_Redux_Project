@@ -9,7 +9,37 @@ import {_fetchCostumers} from '../../actions/fetchCostumers'
 import { withRouter } from 'react-router-dom';
 import './index.css';
 
-const customerData = [
+const CustomerPage = ({
+  headerTitle,
+  contactsData,
+  footer,
+  customerData,
+  history,
+  fetchCostumers,
+}) => {
+  useEffect(() => {
+    fetchCostumers();
+  }, []);
+
+  const createNewCustomer = () => {
+    history.push("/customer/new");
+  };
+
+  return (
+    <div className="containerHome">
+      <Header title={headerTitle || "Clientes"} />
+      <CustomersList customerData={customerData} />
+      <Footer>
+        <Button variant="outlined" onClick={createNewCustomer}>
+          New Customer
+        </Button>
+      </Footer>
+    </div>
+  );
+};
+
+CustomerPage.defaultProps = {
+  customerData: [
   {
     id: "30000001",
     dni: "30000001",
@@ -122,42 +152,14 @@ const customerData = [
     avatar: 'm',
     id: "kxmVQVd",
   },
-];
-
-const CustomerPage = ({
-  headerTitle,
-  contactsData,
-  footer,
-  history,
-  fetchCostumers,
-}) => {
-  useEffect(() => {
-    fetchCostumers();
-  }, []);
-
-  // const fetchData = () => _fetchData();
-
-  const createNewCustomer = () => {
-    history.push("/customer/new");
-  };
-
-  return (
-    <div className="containerHome">
-      <Header title={headerTitle || "Clientes"} />
-      <CustomersList customerData={customerData} />
-      <Footer>
-        <Button variant="outlined" onClick={createNewCustomer}>
-          New Customer
-        </Button>
-      </Footer>
-    </div>
-  );
-};
+  ]
+}
 
 CustomerPage.propTypes = {
   headerTitle: PropTypes.string.isRequired,
   footer: PropTypes.string,
   fetchCostumers: PropTypes.func.isRequired,
+  customerData: PropTypes.array.isRequired,
 };
 
 const mapDispatch = (dispatch) => ({
