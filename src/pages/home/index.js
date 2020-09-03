@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './components/Header';
 import CustomersList from './containers/CustomersList';
 import Footer from '../../utils/footer/Footer';
 import PropTypes from 'prop-types'
 import Button from "@material-ui/core/Button";
-import './index.css';
+import { connect } from 'react-redux'
+import {_fetchCostumers} from '../../actions/fetchCostumers'
 import { withRouter } from 'react-router-dom';
+import './index.css';
 
 const customerData = [
   {
@@ -122,27 +124,44 @@ const customerData = [
   },
 ];
 
-const CustomerPage = ({headerTitle, contactsData, footer, history}) => {
+const CustomerPage = ({
+  headerTitle,
+  contactsData,
+  footer,
+  history,
+  fetchCostumers,
+}) => {
+  useEffect(() => {
+    fetchCostumers();
+  }, []);
+
+  // const fetchData = () => _fetchData();
 
   const createNewCustomer = () => {
-    history.push('/customer/new');
-  }
+    history.push("/customer/new");
+  };
+
   return (
     <div className="containerHome">
       <Header title={headerTitle || "Clientes"} />
       <CustomersList customerData={customerData} />
       <Footer>
-        <Button variant='outlined' onClick={createNewCustomer}>
+        <Button variant="outlined" onClick={createNewCustomer}>
           New Customer
         </Button>
       </Footer>
     </div>
   );
-}
+};
 
 CustomerPage.propTypes = {
   headerTitle: PropTypes.string.isRequired,
   footer: PropTypes.string,
-}
+  fetchCostumers: PropTypes.func.isRequired,
+};
 
-export default withRouter(CustomerPage);
+const mapDispatch = (dispatch) => ({
+  fetchCostumers: () => dispatch(_fetchCostumers()),
+});
+
+export default withRouter(connect(null, mapDispatch)(CustomerPage));
