@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import Header from './components/Header';
 import CustomersList from './containers/CustomersList';
 import Footer from '../../utils/footer/Footer';
+import { ModalContainer } from '../../utils/modal-container/ModalContainer';
 import PropTypes from 'prop-types'
 import Button from "@material-ui/core/Button";
 import { connect } from 'react-redux'
@@ -30,12 +31,15 @@ const CustomerPage = ({
   return (
     <div className="containerHome">
       <Header title={headerTitle || "Clientes"} />
-      <CustomersList customerData={customerData} />
-      <Footer>
-        <Button variant="outlined" onClick={createNewCustomer}>
+        <ModalContainer>
+          <CustomersList customerData={customerData} />
+        </ModalContainer>
+        <Button style={{
+          marginTop: 10,
+          backgroundColor: 'white'
+        }} variant="outlined" onClick={createNewCustomer}>
           New Customer
         </Button>
-      </Footer>
     </div>
   );
 };
