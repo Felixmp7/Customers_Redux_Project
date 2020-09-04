@@ -10,7 +10,11 @@ const RouterContainer = () => {
     <Router>
       <Route exact path="/" component={Customers} />
       <Switch>
-        <Route exact path="/customer/:dni/edit" component={EditCustomer} />
+        <Route exact path="/customer/:dni/edit" render={props => {
+          const {dni} = props.match.params;
+          console.log(dni)
+          return <EditCustomer dni={dni}/>;
+        }} />
         <Route exact path="/customer/:dni" component={CustomerDetails} />
         <Route exact path="/customer/new" component={NewCustomer} />
       </Switch>
