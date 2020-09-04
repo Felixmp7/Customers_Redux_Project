@@ -35,9 +35,11 @@ const Client = ({dni, urlPath, clientName, editAction, delAction}) => {
 
   return (
     <div className="Client-Card">
-      <Button className={classes.clientName}>{clientName}</Button>
+      <Link className="DefaultLinkStyles" to={`${urlPath}/${dni}`}>
+        <Button className={classes.clientName}>{clientName}</Button>
+      </Link>
       <div className="Client-Interactions">
-        <Link className="DefaultLinkStyles" to={`${urlPath}/:${dni}/edit`}>
+        <Link className="DefaultLinkStyles" to={`${urlPath}/${dni}/edit`}>
           <Button className={classes.editButton}>Edit</Button>
         </Link>
         <Link className="DefaultLinkStyles" to={urlPath}>
