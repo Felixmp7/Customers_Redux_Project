@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import Icon from "@mdi/react";
 import { mdiViewGrid, mdiViewList } from "@mdi/js";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   headerPaper: {
     borderRadius: 0,
     height: 50,
@@ -32,7 +32,7 @@ const CustomerList = ({ customerData }) => {
   const gridIcon = view === "grid" ? "#799ED0" : "#aaa";
 
   return (
-    <div className="customersContainer">
+    <>
       <Paper className={classes.headerPaper}>
         <Button onClick={() => handleView("list")}>
           <Icon path={mdiViewList} size={1} color={listIcon} />
@@ -53,7 +53,7 @@ const CustomerList = ({ customerData }) => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
