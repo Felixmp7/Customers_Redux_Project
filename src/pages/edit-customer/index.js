@@ -15,12 +15,8 @@ const EditCustomerPage = ({ dni, customerDetails }) => {
   return (
     <div className="containerEditCustomer">
       <ModalContainer>
-        <CustomerDetails
-          dni={dni}
-          age={age}
-          name={name}
-        />
-        <CustomerForm initialValues={{ dni, age, name }} />
+        <CustomerDetails dni={dni} age={age} name={name} />
+        <CustomerForm dni={dni} age={age} name={name} />
       </ModalContainer>
     </div>
   );
