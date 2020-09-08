@@ -23,7 +23,8 @@
     "redux-devtools": "^3.6.1",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "styled-components": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
