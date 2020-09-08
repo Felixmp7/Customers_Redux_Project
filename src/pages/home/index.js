@@ -1,15 +1,36 @@
 import React, { useEffect } from 'react'
 import Header from './components/Header';
 import CustomersList from './containers/CustomersList';
-import Footer from '../../utils/footer/Footer';
+// import Footer from '../../utils/footer/Footer';
 import { ModalContainer } from '../../utils/modal-container/ModalContainer';
 import PropTypes from 'prop-types'
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 import {_fetchCostumers} from '../../actions/fetchCostumers'
 import { getCustomerDataFromStore } from "../../selectors/customers";
 import { withRouter } from 'react-router-dom';
 import './index.css';
+
+
+const StyledButton = styled.button`
+  background: transparent;
+  color: #fff;
+  font-size: 1em;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  border: 2px solid #ffffff77;
+  margin-top: 10px;
+  transition: ease 1s;
+  &:hover {
+    transition: ease 1s;
+    color: #555;
+    background: white;
+    border: 2px solid transparent;
+    cursor: pointer;
+  }
+`; 
 
 const CustomerPage = ({
   headerTitle,
@@ -34,12 +55,9 @@ const CustomerPage = ({
         <ModalContainer>
           <CustomersList customerData={customerData} />
         </ModalContainer>
-        <Button style={{
-          marginTop: 10,
-          backgroundColor: 'white'
-        }} variant="outlined" onClick={createNewCustomer}>
+        <StyledButton onClick={createNewCustomer}>
           New Customer
-        </Button>
+        </StyledButton>
     </div>
   );
 };
