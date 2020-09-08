@@ -1,7 +1,7 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import { reduxForm, Field } from 'redux-form'; // HOC (objeto con el key form: y el nombre que le daré al form)
-import { connect } from 'react-redux';
+import {setInitialPropsCustomerForm} from '../../../utils/hocs/setInitialPropsCustomerForm';
 
 const CustomerForm = (props) => {
   console.log(props)
@@ -27,13 +27,9 @@ const CustomerForm = (props) => {
 
 // }
 
-const mapState = (state,props) => ({
-  initialValues: props
-})
-
 const ReduxCustomerForm = reduxForm({
   form: "Edit Customer"
 })(CustomerForm);
 
 
-export default connect(mapState)(ReduxCustomerForm);
+export default setInitialPropsCustomerForm(ReduxCustomerForm);
