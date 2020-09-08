@@ -25,9 +25,9 @@ const StyledButton = styled.button`
   transition: ease 1s;
   &:hover {
     transition: ease 1s;
-    color: #555;
-    background: white;
-    border: 2px solid transparent;
+    // color: #fff;
+    background: #5ab735;
+    border: 2px solid #438925;
     cursor: pointer;
   }
 `; 
