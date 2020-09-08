@@ -67,7 +67,7 @@ CustomerPage.defaultProps = {
 }
 
 CustomerPage.propTypes = {
-  headerTitle: PropTypes.string.isRequired,
+  headerTitle: PropTypes.string,
   footer: PropTypes.string,
   fetchCostumers: PropTypes.func.isRequired,
   customerData: PropTypes.array.isRequired,
