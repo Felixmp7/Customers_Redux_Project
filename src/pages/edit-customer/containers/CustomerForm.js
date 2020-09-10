@@ -5,41 +5,46 @@ import {setInitialPropsCustomerForm} from '../../../utils/hocs/setInitialPropsCu
 
 const isRequired = value => !value && 'Este campo es requerido';
 
-const NameField = ({input, meta}) => (
+const MyField = ({ input, meta, type, label, name }) => (
   <div>
-    <input {...input} type="text"/>
-    {
-      meta.touched && meta.error && <span>{meta.error}</span>
-    }
+    <label htmlFor={name}>{label}</label>
+    <input {...input} type={!type ? "text" : type} />
+    {meta.touched && meta.error && <span>{meta.error}</span>}
   </div>
-)
+);
 
 const CustomerForm = (props) => {
   console.log(props)
   return (
     <form>
-      <div>
-        <label htmlFor="name">Customer Name</label>
-        <Field
-          name="name"
-          validate={isRequired}
-          component={NameField}
-          type="text"
-        />
-      </div>
-      <div>
-        <label htmlFor="dni">Customer DNI</label>
-        <Field name="dni" validate={isRequired} component="input" type="text" />
-      </div>
-      <div>
-        <label htmlFor="age">Customer Age</label>
-        <Field
-          name="age"
-          validate={isRequired}
-          component="input"
-          type="number"
-        />
-      </div>
+      <Field
+        name="name"
+        label="Nombre"
+        validate={isRequired}
+        component={MyField}
+        type="text"
+      />
+      <Field
+        name="dni"
+        label="DNI"
+        validate={isRequired}
+        component={MyField}
+        type="text"
+      />
+      <Field
+        name="age"
+        label="AGE"
+        validate={isRequired}
+        /* 
+          Puedo pasarle un array de validaciones, 
+          me retorna un texto al lado del input.
+
+          Ejemplo: validate={[isRequired, isNumber]}
+          
+        */
+        component={MyField}
+        type="number"
+      />
     </form>
   );
 }
