@@ -24,7 +24,7 @@ const CustomerDetails = ({name,dni,age}) => {
 CustomerDetails.propTypes = {
   name: PropTypes.string.isRequired,
   dni: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
 };
 
 export default CustomerDetails;
