@@ -3,7 +3,23 @@ import React from 'react'
 import { reduxForm, Field } from 'redux-form'; // HOC (objeto con el key form: y el nombre que le daré al form)
 import {setInitialPropsCustomerForm} from '../../../utils/hocs/setInitialPropsCustomerForm';
 
+const validate = (values) => {
+  const error = {};
+
+  if (!values.name) {
+    error.name = 'El campo nombre es requerido'
+  }
+
+  if (!values.dni) {
+    error.dni = 'El DNI es un campo obligatorio'
+  }
+
+  return error;
+}
+
 const isRequired = value => !value && 'Este campo es requerido';
+
+const isNumber = value => isNaN(Number(value)) && 'Este campo debe ser un número';
 
 const MyField = ({ input, meta, type, label, name }) => (
   <div>
@@ -13,10 +29,10 @@ const MyField = ({ input, meta, type, label, name }) => (
   </div>
 );
 
-const CustomerForm = (props) => {
-  console.log(props)
+const CustomerForm = ({handleSubmit, submitting}) => {
+  // console.log(props)
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <Field
         name="name"
         label="Nombre"
@@ -27,24 +43,18 @@ const CustomerForm = (props) => {
       <Field
         name="dni"
         label="DNI"
-        validate={isRequired}
+        validate={[isRequired, isNumber]}
         component={MyField}
         type="text"
       />
       <Field
         name="age"
         label="AGE"
-        validate={isRequired}
-        /* 
-          Puedo pasarle un array de validaciones, 
-          me retorna un texto al lado del input.
-
-          Ejemplo: validate={[isRequired, isNumber]}
-          
-        */
+        validate={[isRequired, isNumber]}
         component={MyField}
         type="number"
       />
+      <button type="submit" disabled={submitting}>Aceptar</button>
     </form>
   );
 }
@@ -54,7 +64,8 @@ const CustomerForm = (props) => {
 // }
 
 const ReduxCustomerForm = reduxForm({
-  form: "Edit Customer"
+  form: "Edit Customer",
+  validate // Función que nos permite evaluar de forma global
 })(CustomerForm);
 
 
