@@ -43,7 +43,7 @@ const CustomerPage = ({
     if (customerData.length === 0) {
       fetchCostumers();
     }
-  }, [fetchCostumers]);
+  }, [fetchCostumers, customerData]);
 
   const createNewCustomer = () => {
     history.push("/customer/new");
