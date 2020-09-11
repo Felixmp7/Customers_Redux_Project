@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import {ModalContainer} from '../../utils/modal-container/ModalContainer'
+import {ModalContainer} from '../../utils/components/modal-container/ModalContainer'
 import CustomerDetails from './components/CustomerDetails';
 import CustomerForm from './containers/CustomerForm';
 import { connect } from "react-redux";
@@ -8,6 +8,7 @@ import { _fetchCostumers } from "../../actions/fetchCostumers";
 import { _updateCostumer } from "../../actions/updateCostumer";
 import { getDetailsForCostumer } from "../../selectors/customers";
 import './index.css'
+import { withRouter } from "react-router-dom";
 
 
 const EditCustomerPage = ({
@@ -15,6 +16,7 @@ const EditCustomerPage = ({
   customerDetails,
   fetchCostumers,
   updateCostumer,
+  history,
 }) => {
   const [customerDataLoaded, setCustomerDataLoaded] = useState(false);
 
@@ -34,12 +36,14 @@ const EditCustomerPage = ({
 
   const handleSubmit = (values) => {
     console.log(values);
-    const { dni } = values;
-    updateCostumer(dni, values);
+    const { id } = values;
+    updateCostumer(id, values);
   };
 
+  const handleGoBack = () => history.goBack();
+
   if (customerDataLoaded) {
-    const { age, name } = customerDetails;
+    const { age, name, id } = customerDetails;
     return (
       <div className="containerEditCustomer">
         <ModalContainer>
@@ -47,8 +51,10 @@ const EditCustomerPage = ({
           <CustomerForm
             dni={dni}
             age={age}
+            id={id}
             name={name}
             onSubmit={handleSubmit}
+            onBack={handleGoBack}
           />
         </ModalContainer>
       </div>
@@ -78,4 +84,4 @@ const mapDispatch = (dispatch) => ({
   updateCostumer: (id, obj) => dispatch(_updateCostumer(id, obj)),
 });
 
-export default connect(mapState, mapDispatch)(EditCustomerPage);
+export default withRouter(connect(mapState, mapDispatch)(EditCustomerPage));
