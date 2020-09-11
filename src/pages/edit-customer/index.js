@@ -5,11 +5,17 @@ import CustomerDetails from './components/CustomerDetails';
 import CustomerForm from './containers/CustomerForm';
 import { connect } from "react-redux";
 import { _fetchCostumers } from "../../actions/fetchCostumers";
+import { _updateCostumer } from "../../actions/updateCostumer";
 import { getDetailsForCostumer } from "../../selectors/customers";
 import './index.css'
 
 
-const EditCustomerPage = ({ dni, customerDetails, fetchCostumers }) => {
+const EditCustomerPage = ({
+  dni,
+  customerDetails,
+  fetchCostumers,
+  updateCostumer,
+}) => {
   const [customerDataLoaded, setCustomerDataLoaded] = useState(false);
 
   const handleFetch = useCallback(async () => {
@@ -26,7 +32,11 @@ const EditCustomerPage = ({ dni, customerDetails, fetchCostumers }) => {
     handleFetch();
   }, [handleFetch]);
 
-  const handleSubmit = (values) => console.log(values);
+  const handleSubmit = (values) => {
+    console.log(values);
+    const { dni } = values;
+    updateCostumer(dni, values);
+  };
 
   if (customerDataLoaded) {
     const { age, name } = customerDetails;
@@ -56,6 +66,7 @@ EditCustomerPage.propTypes = {
   dni: PropTypes.string.isRequired,
   customerDetails: PropTypes.object,
   fetchCostumers: PropTypes.func.isRequired,
+  updateCostumer: PropTypes.func.isRequired,
 };
 
 const mapState = (state, {dni}) => ({
@@ -64,6 +75,7 @@ const mapState = (state, {dni}) => ({
 
 const mapDispatch = (dispatch) => ({
   fetchCostumers: () => dispatch(_fetchCostumers()),
+  updateCostumer: (id, obj) => dispatch(_updateCostumer(id, obj)),
 });
 
 export default connect(mapState, mapDispatch)(EditCustomerPage);
