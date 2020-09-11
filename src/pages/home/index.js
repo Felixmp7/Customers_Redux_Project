@@ -34,15 +34,15 @@ const StyledButton = styled.button`
 
 const CustomerPage = ({
   headerTitle,
-  contactsData,
-  footer,
   customerData,
   history,
   fetchCostumers,
 }) => {
   
   useEffect(() => {
-    fetchCostumers();
+    if (customerData.length === 0) {
+      fetchCostumers();
+    }
   }, [fetchCostumers]);
 
   const createNewCustomer = () => {
