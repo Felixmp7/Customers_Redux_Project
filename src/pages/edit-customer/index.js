@@ -55,6 +55,7 @@ EditCustomerPage.defaultProps = {
 EditCustomerPage.propTypes = {
   dni: PropTypes.string.isRequired,
   customerDetails: PropTypes.object,
+  fetchCostumers: PropTypes.func.isRequired,
 };
 
 const mapState = (state, {dni}) => ({
