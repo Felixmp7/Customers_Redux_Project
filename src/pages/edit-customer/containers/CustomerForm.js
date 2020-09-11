@@ -1,7 +1,7 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import { reduxForm, Field } from 'redux-form'; // HOC (objeto con el key form: y el nombre que le daré al form)
-import {setInitialPropsCustomerForm} from '../../../utils/hocs/setInitialPropsCustomerForm';
+import {setInitialPropsCustomerForm} from '../../../utils/components/hocs/setInitialPropsCustomerForm';
 
 const validate = (values) => {
   const error = {};
@@ -29,7 +29,7 @@ const MyField = ({ input, meta, type, label, name }) => (
   </div>
 );
 
-const CustomerForm = ({handleSubmit, submitting}) => {
+const CustomerForm = ({ handleSubmit, submitting, onBack }) => {
   // console.log(props)
   return (
     <form onSubmit={handleSubmit}>
@@ -54,10 +54,15 @@ const CustomerForm = ({handleSubmit, submitting}) => {
         component={MyField}
         type="number"
       />
-      <button type="submit" disabled={submitting}>Aceptar</button>
+      <button type="submit" disabled={submitting}>
+        Aceptar
+      </button>
+      <button type="button" onClick={onBack}>
+        Cancelar
+      </button>
     </form>
   );
-}
+};
 
 // CustomerForm.propTypes = {
 
