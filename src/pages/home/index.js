@@ -1,36 +1,14 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import Header from './components/Header';
 import CustomersList from './containers/CustomersList';
-// import Footer from '../../utils/footer/Footer';
-import { ModalContainer } from '../../utils/modal-container/ModalContainer';
-import PropTypes from 'prop-types'
-// import Button from "@material-ui/core/Button";
+import { ModalContainer } from '../../utils/components/modal-container/ModalContainer';
+import { StyledButton } from '../../utils/components/buttons/StyledButton';
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 import {_fetchCostumers} from '../../actions/fetchCostumers'
 import { getCustomerDataFromStore } from "../../selectors/customers";
 import { withRouter } from 'react-router-dom';
 import './index.css';
-
-
-const StyledButton = styled.button`
-  background: transparent;
-  color: #fff;
-  font-size: 1em;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 3px;
-  border: 2px solid #ffffff77;
-  margin-top: 10px;
-  transition: ease 1s;
-  &:hover {
-    transition: ease 1s;
-    // color: #fff;
-    background: #5ab735;
-    border: 2px solid #438925;
-    cursor: pointer;
-  }
-`; 
 
 const CustomerPage = ({
   headerTitle,
@@ -38,12 +16,15 @@ const CustomerPage = ({
   history,
   fetchCostumers,
 }) => {
+
+  // console.log(customerData);
   
   useEffect(() => {
-    if (customerData.length === 0) {
+    // if (customerData.length === 0) 
+      console.log('Fetch')
       fetchCostumers();
-    }
-  }, [fetchCostumers, customerData]);
+    // }
+  }, [fetchCostumers]);
 
   const createNewCustomer = () => {
     history.push("/customer/new");
