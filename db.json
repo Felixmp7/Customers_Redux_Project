@@ -1,11 +1,10 @@
 {
   "customerData": [
     {
-      "id": "30000001",
       "dni": "30000001",
-      "name": "Pablo Alborán",
       "age": 30,
-      "avatar": "m"
+      "id": "30000001",
+      "name": "Eliana Guerrero"
     },
     {
       "id": "500000",
