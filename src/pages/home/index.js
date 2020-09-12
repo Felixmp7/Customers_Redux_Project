@@ -27,7 +27,6 @@ const NewCustomerButton = styled(StyledButton)`
 `;
 
 const CustomerPage = ({
-  headerTitle,
   customerData,
   history,
   fetchCostumers,
@@ -45,7 +44,7 @@ const CustomerPage = ({
 
   return (
     <div className="containerHome">
-      <Header title={headerTitle || "Clientes"} />
+      <Header title="Customers" />
         <ModalContainer>
           <CustomersList customerData={customerData} />
         </ModalContainer>
