@@ -37,7 +37,7 @@ const EditCustomerPage = ({
   const handleSubmit = (values) => {
     console.log(values);
     const { id } = values;
-    updateCostumer(id, values);
+    return updateCostumer(id, values);
   };
 
   const handleGoBack = () => history.goBack();
@@ -53,6 +53,7 @@ const EditCustomerPage = ({
             age={age}
             id={id}
             name={name}
+            onSubmitSuccess={handleGoBack}
             onSubmit={handleSubmit}
             onBack={handleGoBack}
           />
