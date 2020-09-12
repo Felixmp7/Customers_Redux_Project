@@ -1,14 +1,30 @@
+// Dependencies
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
+// Componentes
 import Header from './components/Header';
 import CustomersList from './containers/CustomersList';
 import { ModalContainer } from '../../utils/components/modal-container/ModalContainer';
 import { StyledButton } from '../../utils/components/buttons/StyledButton';
-import { connect } from 'react-redux'
+// Methods
 import {_fetchCostumers} from '../../actions/fetchCostumers'
 import { getCustomerDataFromStore } from "../../selectors/customers";
-import { withRouter } from 'react-router-dom';
+// CSS
 import './index.css';
+
+const NewCustomerButton = styled(StyledButton)`
+  background: transparent;
+  color: #fff;
+  border: 2px solid #ffffff77;
+  margin-top: 10px;
+  &:hover {
+    background: #5ab735;
+    border: 2px solid #438925;
+  }
+`;
 
 const CustomerPage = ({
   headerTitle,
@@ -16,14 +32,11 @@ const CustomerPage = ({
   history,
   fetchCostumers,
 }) => {
-
-  // console.log(customerData);
   
   useEffect(() => {
-    // if (customerData.length === 0) 
-      console.log('Fetch')
-      fetchCostumers();
-    // }
+    console.log('Fetch');
+    fetchCostumers();
+
   }, [fetchCostumers]);
 
   const createNewCustomer = () => {
@@ -36,9 +49,9 @@ const CustomerPage = ({
         <ModalContainer>
           <CustomersList customerData={customerData} />
         </ModalContainer>
-        <StyledButton onClick={createNewCustomer}>
+        <NewCustomerButton onClick={createNewCustomer}>
           New Customer
-        </StyledButton>
+        </NewCustomerButton>
     </div>
   );
 };
