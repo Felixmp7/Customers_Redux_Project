@@ -1,4 +1,5 @@
 import React from 'react'
+import { Prompt } from 'react-router-dom'
 // import PropTypes from 'prop-types'
 import { reduxForm, Field } from 'redux-form'; // HOC (objeto con el key form: y el nombre que le daré al form)
 import {setInitialPropsCustomerForm} from '../../../utils/components/hocs/setInitialPropsCustomerForm';
@@ -29,8 +30,13 @@ const MyField = ({ input, meta, type, label, name }) => (
   </div>
 );
 
-const CustomerForm = ({ handleSubmit, submitting, onBack }) => {
+const parseAgeToNumber = age => age && Number(age);
+
+const CustomerForm = ({ handleSubmit, submitting, onBack, pristine, submitSucceeded }) => {
   // console.log(props)
+
+  // pristine = type: Boolean, me indica si modifiqué algo en el form
+  // submitSucceeded = type: Boolean, me indica si ya hice submit en el form.
   return (
     <form onSubmit={handleSubmit}>
       <Field
@@ -50,16 +56,21 @@ const CustomerForm = ({ handleSubmit, submitting, onBack }) => {
       <Field
         name="age"
         label="AGE"
+        parse={parseAgeToNumber}
         validate={[isRequired, isNumber]}
         component={MyField}
         type="number"
       />
-      <button type="submit" disabled={submitting}>
+      <button type="submit" disabled={pristine || submitting}>
         Aceptar
       </button>
       <button type="button" onClick={onBack}>
         Cancelar
       </button>
+      <Prompt
+        when={!pristine && !submitSucceeded}
+        message="Se perderan los datos si continúas"
+      />
     </form>
   );
 };
